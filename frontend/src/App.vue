@@ -6,6 +6,7 @@
 
 <script>
 import ColorizationPage from './components/ColorizationPage'
+// import MainPage from './components/MainPage'
 
 export default {
   name: 'App',

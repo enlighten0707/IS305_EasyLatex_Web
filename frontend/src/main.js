@@ -6,7 +6,7 @@ import axios from 'axios'
 
 Vue.use(ElementUI);
 Vue.prototype.$axios = axios
-Vue.prototype.$url = 'http://127.0.0.1:8000/'
+Vue.prototype.$url = 'http://localhost:8000/'
 
 new Vue({
   el: '#app',
