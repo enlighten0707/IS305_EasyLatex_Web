@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('sketchProcess/', views.sketchProcess),
-    path('colorization/', views.colorization),
+    # path('colorization/', views.colorization),
     # path('expr/', views.expr),
     path('XunFeiAPI/', views.XunFeiAPI),
 

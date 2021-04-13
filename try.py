@@ -1,41 +1,11 @@
-from django.http import HttpResponse
-import cv2
-from .utils import process
-from .utils import models
-import numpy as np
-import torch
-from PIL import Image
-from io import BytesIO
 import requests
 import datetime
 import hashlib
 import base64
 import hmac
 import json
-import os
-import glob
-
-def sketchProcess(request):
-    '''
-    Get the uploaded image and convert it to sketch, then return the sketch.
-    :param request: include the uploaded image
-    :return: the sketch generated according to the original image
-    '''
-    if request.method == 'POST':
-        # Read the image and save it to lacal
-        file_list = request.FILES.getlist('file')
-        file = file_list[0]
-        # path = "./backend/utils/imgDir/"
-        # img_name = "origin.png"
-        # img_dir = path + img_name
-        img_dir = "./backend/origin.jpg"
-        data = file.file.read()
-        # print(data)
-
-        with open(img_dir, 'wb') as f:
-            f.write(data)
-
-    return HttpResponse(data, content_type='image/png')
+import cv2
+import numpy as np
 
 
 class get_result(object):
@@ -183,9 +153,22 @@ class get_result(object):
         else:
             # 鉴权成功
             respData = json.loads(response.text)
+            print(respData)
             str = self.get_content(respData)
 
         return str
+
+
+def XunFeiAPI():
+    path = "./backend/utils/imgDir/"
+    img_name = "test.png"
+    img_dir = path + img_name
+
+    # 初始化类
+    gClass = get_result(img_dir)
+    str = gClass.call_url()
+    # print(str)
+    # return HttpResponse(str, content_type='text/plain')
 
 
 # 水平方向投影
@@ -206,13 +189,39 @@ def hProject(binary):
         for i in range(h_h[j]):
             hprojection[j, i] = 255
 
-    # cv2.imshow('hpro', hprojection)
+    cv2.imshow('hpro', hprojection)
 
     return h_h
 
 
-def crop_and_store(img_dir):
+# 垂直反向投影
+def vProject(binary):
+    h, w = binary.shape
+    # 垂直投影
+    vprojection = np.zeros(binary.shape, dtype=np.uint8)
+
+    # 创建 w 长度都为0的数组
+    w_w = [0] * w
+    for i in range(w):
+        for j in range(h):
+            if binary[j, i] == 0:
+                w_w[i] += 1
+
+    for i in range(w):
+        for j in range(w_w[i]):
+            vprojection[j, i] = 255
+
+    cv2.imshow('vpro', vprojection)
+
+    return w_w
+
+
+def cut():
+    path = "./backend/utils/imgDir/"
+    img_name = "origin.png"
+    img_dir = path + img_name
     img = cv2.imread(img_dir)
+
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # 针对不同图需要调整阈值
@@ -223,7 +232,9 @@ def crop_and_store(img_dir):
 
     start = 0
     h_start, h_end = [], []
+    position = []
 
+    print(h_h)
     # 根据水平投影获取垂直分割
     zero_cnt = 0
     for i in range(len(h_h)):
@@ -236,45 +247,14 @@ def crop_and_store(img_dir):
         if zero_cnt > 10 and start == 1:
             h_end.append(i)
             start = 0
-    # print(h_start)
-    # print(h_end)
-
-    cropped_dir = "./backend/cropped/"
-    if os.path.exists(cropped_dir):
-        for path in glob.glob("./backend/cropped/*"):
-            os.remove(path)
-    else:
-        os.makedirs(cropped_dir)
+    print(h_start)
+    print(h_end)
     for i in range(len(h_start)):
         crop = img[h_start[i]: h_end[i]]
-        # cv2.imshow('crop_%d' % i, crop)
-        cv2.imwrite(os.path.join(cropped_dir, 'crop_%d.jpg' % i), crop)
+        cv2.imshow('crop_%d' % i, crop)
+        cv2.imwrite('crop_%d.jpg' % i, crop)
 
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
-
-def XunFeiAPI(request):
-    img_dir = "./backend/origin.jpg"
-
-    crop_and_store(img_dir)
-
-    str_all = "\\begin{align} "
-    for paths in glob.glob("./backend/cropped/*"):
-        # 初始化类
-        gClass = get_result(paths)
-        str = gClass.call_url()
-        str_all += str
-        str_all += "\\\\"
-
-    str_all += " \\end{align}"
-    return HttpResponse(str_all, content_type='text/plain')
-
-# def expr(request):
-#     if request.method == 'POST':
-#         # Read the hint and save it to lacal
-#         str_expr = request.POST.get('str_expr')
-#         print(str_expr)
-#         expr = sympify(str_expr)
-#
-#     return HttpResponse({'str_expr': expr})
+cut()

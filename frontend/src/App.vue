@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ColorizationPage from './components/ColorizationPage'
+import ColorizationPage from './components/MainPage'
 // import MainPage from './components/MainPage'
 
 export default {
