@@ -218,10 +218,10 @@ def vProject(binary):
 
 def cut():
     path = "./backend/utils/imgDir/"
-    img_name = "origin.png"
+    img_name = "test.png"
     img_dir = path + img_name
     img = cv2.imread(img_dir)
-
+    cv2.imshow('test.jpg', img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # 针对不同图需要调整阈值

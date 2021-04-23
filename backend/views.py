@@ -139,9 +139,13 @@ class get_result(object):
         return body
 
     def get_content(self, respData):
+        # print(respData)
         str = ""
-        for i in range(len(respData['data']['region'])):
-            str += respData['data']['region'][i]['recog']['content'] + "\n"
+        try:
+            for i in range(len(respData['data']['region'])):
+                str += respData['data']['region'][i]['recog']['content'] + "\n"
+        except:
+            return "Error!"
 
         s1 = 'ifly-latex-begin'
         flag = 1
@@ -176,6 +180,7 @@ class get_result(object):
         response = requests.post(self.url, data=body, headers=headers, timeout=8)
         status_code = response.status_code
 
+        str = "Error!"
         if status_code != 200:
             # 鉴权失败
             print("Http请求失败，状态码：" + str(status_code) + "，错误信息：" + response.text)
@@ -236,8 +241,6 @@ def crop_and_store(img_dir):
         if zero_cnt > 10 and start == 1:
             h_end.append(i)
             start = 0
-    # print(h_start)
-    # print(h_end)
 
     cropped_dir = "./backend/cropped/"
     if os.path.exists(cropped_dir):

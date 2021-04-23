@@ -4,14 +4,42 @@
   <el-container>
     <el-header class="m-header">
       <img
-        src="../assets/logo.png"
+        src="../assets/panda.png"
         style="height: 75px; float: left; margin-left: 10px"
       />
-      <span style="float: right; margin-right: 20px">
+      <span style="float: right; margin-right: 50px">
+        <el-button type="success" icon="el-icon-view" round plain size="small" @click="handleAvatarSuccess"
+                   style="margin:10px">
+            识别公式
+        </el-button>
+        <el-button type="primary" icon="el-icon-view" id="render" round plain size="small" @click="convert"
+                   style="margin:10px">
+            预览公式
+          </el-button>
+        <el-button type="info" icon="el-icon-document-copy" round plain size="small" @click="copyToClip"
+                   style="margin:10px">
+            复制公式
+        </el-button>
+        <!--        <el-button type="info" icon="el-icon-document-copy" round plain size="small" @click="save"-->
+        <!--                   style="margin:10px">-->
+        <!--            保存公式-->
+        <!--        </el-button>-->
       </span>
     </el-header>
     <hr/>
     <el-container>
+      <!--      <el-col :span="2" :offset="1">-->
+      <!--        <el-row style="display:inline-block;margin:20px;">-->
+      <!--          <el-button type="primary" icon="el-icon-view" id="render" round plain size="small" @click="convert">-->
+      <!--            预览-->
+      <!--          </el-button>-->
+      <!--        </el-row>-->
+      <!--        <el-row style="display:inline-block;margin:20px;">-->
+      <!--          <el-button type="info" icon="el-icon-document-copy" round plain size="small" @click="copyToClip">-->
+      <!--            复制-->
+      <!--          </el-button>-->
+      <!--        </el-row>-->
+      <!--      </el-col>-->
       <el-main>
         <el-row>
           <el-col :span="9" :offset="2">
@@ -35,7 +63,9 @@
                 :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar" id="uploadImage">
                 <i v-else class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__text">
+                  <em>拖曳</em>或<em>点击</em>上传，支持多行公式识别
+                </div>
               </el-upload>
             </el-row>
             <!--            <el-button type="primary" icon="el-icon-edit" circle @click="RequestAPI"></el-button>-->
@@ -44,111 +74,348 @@
                 type="textarea"
                 id="result_str"
                 :rows="3"
-                :autosize="{ minRows: 3, maxRows: 6}"
+                :autosize="{ minRows: 6, maxRows: 12}"
                 v-model="textarea"
                 @input="convert"
-                placeholder="公式识别结果（Latex源码）">
+                placeholder="公式识别结果/公式编辑框（以Latex源码形式显示）">
               </el-input>
-              <el-button type="primary" icon="el-icon-view" id="render" round plain size="small" @click="convert">
-                预览
-              </el-button>
-              <el-button type="info" icon="el-icon-document-copy" round plain size="small" @click="copyToClip">
-                复制
-              </el-button>
               <div id="output"></div>
-              <!--              <el-pagination @current-change="handleCurrentChange"-->
-              <!--                             :current-page="currentPage"-->
-              <!--                             layout="prev, pager, next"-->
-              <!--                             :page-size="1"-->
-              <!--                             :total="totalCount">-->
-              <!--              </el-pagination>-->
             </el-row>
           </el-col>
-          <el-col :span="10" offset="2" style="display:inline-block;">
-            <el-tabs tab-position="right">
+          <el-col :span="9" offset="2" style="display:inline-block;">
+            <el-tabs type="border-card" value="first">
               <el-tab-pane label="高等数学" name="first">
                 <el-row>
-                  <el-col :span="8"><span>\(\sum\)</span></el-col>
-                  <el-col :span="8"><span>\(\sum_{i=1}^\infty\)</span></el-col>
-                  <el-col :span="8"><span>\(\prod_{i=1}^n\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\sum</div>
+                      <span>\(\sum\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\sum_{i=1}^\infty</div>
+                      <span>\(\sum_{i=1}^\infty\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\prod_{i=1}^n</div>
+                      <span>\(\prod_{i=1}^n\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\lim_{n\to\infty}\)</span></el-col>
-                  <el-col :span="8"><span></span></el-col>
-                  <el-col :span="8"><span></span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\int_{-N}^ {N} e^x \mathrm{d}x</div>
+                      <span>\(\int_{-N}^ {N} e^x \mathrm{d}x\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\iint_{a}^{b} \mathrm{d}x \mathrm{d}y</div>
+                      <span>\(\iint_{a}^{b} \mathrm{d}x \mathrm{d}y\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\oint_{D} x^ 2 \mathrm{d}x + 4y^2 \mathrm{d}y</div>
+                      <span>\(\oint_{D} x^ 2 \mathrm{d}x + 4y^2 \mathrm{d}y\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\partial x\)</span></el-col>
-                  <el-col :span="8"><span>\(\frac{\partial}{\partial x}h(x,y)\)</span></el-col>
-                  <el-col :span="8"><span></span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\partial x</div>
+                      <span>\(\partial x\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\frac{\partial}{\partial x}h(x,y)</div>
+                      <span>\(\frac{\partial}{\partial x}h(x,y)\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\mathrm{d}x\)</span></el-col>
-                  <el-col :span="8"><span>\(\frac{\mathrm{d}y}{\mathrm{d}x}\)</span></el-col>
-                  <el-col :span="8"><span></span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\mathrm{d}x</div>
+                      <span>\(\mathrm{d}x\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\frac{\mathrm{d}y}{\mathrm{d}x}</div>
+                      <span>\(\frac{\mathrm{d}y}{\mathrm{d}x}\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\int_{-N}^ {N} e^x \mathrm{d}x\)</span></el-col>
-                  <el-col :span="8"><span>\(\iint_{a}^{b} \mathrm{d}x \mathrm{d}y\)</span></el-col>
-                  <el-col :span="8"><span>\(\oint_{D} x^ 2 \mathrm{d}x + 4y^2 \mathrm{d}y\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\lim_{n\to\infty}</div>
+                      <span>\(\lim_{n\to\infty}\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+              </el-tab-pane>
+              <el-tab-pane label="希腊字母" name="second">
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\alpha</div>
+                      <span>\(\alpha\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\beta</div>
+                      <span>\(\beta\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\eta</div>
+                      <span>\(\eta\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\gamma</div>
+                      <span>\(\gamma\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\phi</div>
+                      <span>\(\phi\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\pi</div>
+                      <span>\(\pi\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\rho</div>
+                      <span>\(\rho\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\sigma</div>
+                      <span>\(\sigma\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\tau</div>
+                      <span>\(\tau\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\lambda</div>
+                      <span>\(\lambda\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\varepsilon</div>
+                      <span>\(\varepsilon\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\theta</div>
+                      <span>\(\theta\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\delta</div>
+                      <span>\(\delta\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\psi</div>
+                      <span>\(\psi\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\varphi</div>
+                      <span>\(\varphi\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\Gamma</div>
+                      <span>\(\Gamma\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\Lambda</div>
+                      <span>\(\Lambda\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\Theta</div>
+                      <span>\(\Theta\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
               </el-tab-pane>
-              <el-tab-pane label="字母符号" name="second">
+              <el-tab-pane label="集合逻辑" name="third">
                 <el-row>
-                  <el-col :span="8"><span>\(\alpha\)</span></el-col>
-                  <el-col :span="8"><span>\(\beta\)</span></el-col>
-                  <el-col :span="8"><span>\(\eta\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\le</div>
+                      <span>\(\le\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\ge</div>
+                      <span>\(\ge\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\sim</div>
+                      <span>\(\sim\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\gamma\)</span></el-col>
-                  <el-col :span="8"><span>\(\phi\)</span></el-col>
-                  <el-col :span="8"><span>\(\pi\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\subset</div>
+                      <span>\(\subset\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\subseteq</div>
+                      <span>\(\subseteq\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\supset</div>
+                      <span>\(\supset\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\rho\)</span></el-col>
-                  <el-col :span="8"><span>\(\sigma\)</span></el-col>
-                  <el-col :span="8"><span>\(\tau\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\cup</div>
+                      <span>\(\cup\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\cap</div>
+                      <span>\(\cap\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\lambda\)</span></el-col>
-                  <el-col :span="8"><span>\(\varepsilon\)</span></el-col>
-                  <el-col :span="8"><span>\(\theta\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\lor</div>
+                      <span>\(\lor\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\land</div>
+                      <span>\(\land\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+              </el-tab-pane>
+              <el-tab-pane label="矩阵运算" name="forth">
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\begin{matrix}0 & 1 \\1 & 0\end{matrix}</div>
+                      <span>\(\begin{matrix}0 & 1 \\1 & 0\end{matrix}\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\begin{bmatrix}0 & 1 \\1 & 0\end{bmatrix}</div>
+                      <span>\(\begin{bmatrix}0 & 1 \\1 & 0\end{bmatrix}\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\begin{pmatrix}0 & 1 \\1 & 0\end{pmatrix}</div>
+                      <span>\(\begin{pmatrix}0 & 1 \\1 & 0\end{pmatrix}\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
                 <el-row>
-                  <el-col :span="8"><span>\(\delta\)</span></el-col>
-                  <el-col :span="8"><span>\(\psi\)</span></el-col>
-                  <el-col :span="8"><span>\(\varphi\)</span></el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\begin{vmatrix}0 & 1 \\1 & 0\end{vmatrix}</div>
+                      <span>\(\begin{vmatrix}0 & 1 \\1 & 0\end{vmatrix}\)</span>
+                    </el-tooltip>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\begin{Vmatrix}0 & 1 \\1 & 0\end{Vmatrix}</div>
+                      <span>\(\begin{Vmatrix}0 & 1 \\1 & 0\end{Vmatrix}\)</span>
+                    </el-tooltip>
+                  </el-col>
+                </el-row>
+                <el-divider></el-divider>
+                <el-row>
+                  <el-col :span="8">
+                    <el-tooltip placement="bottom" enterable="true">
+                      <div slot="content" style="font-size:8px">\begin{bmatrix}a_{11}&\dots&a_{1n}\\& \ddots&\vdots\\0 &&a_{nn}\end{bmatrix}_{n \times n}</div>
+                      <span>\(\begin{bmatrix}a_{11}&\dots&a_{1n}\\& \ddots&\vdots\\0 &&a_{nn}\end{bmatrix}_{n \times n}\)</span>
+                    </el-tooltip>
+                  </el-col>
                 </el-row>
                 <el-divider></el-divider>
               </el-tab-pane>
             </el-tabs>
-
-            <!--            <el-tabs v-model="activeName" tab-position="right" @tab-click="handleClick">-->
-            <!--              <el-tab-pane label="高等数学" name="first">-->
-            <!--                <el-row>-->
-            <!--                  <el-col :span="8"><span>\(\sum\)</span></el-col>-->
-            <!--                  <el-col :span="8"><span>\(\sum_{i=1}^\infty\)</span></el-col>-->
-            <!--                  <el-col :span="8"><span>\(\sum_{k=1}^{n}\)</span></el-col>-->
-            <!--                </el-row>-->
-            <!--                <el-divider></el-divider>-->
-            <!--                <el-row>-->
-            <!--                  <el-col :span="8"><span>\(\prod_{i=1}^n\)</span></el-col>-->
-            <!--                  <el-col :span="8"><span>\(\lim_{n\to\infty}\)</span></el-col>-->
-            <!--                  <el-col :span="8"><span>\(\int_{-N}^ {N} e^x, dx`\)</span></el-col>-->
-            <!--                </el-row>-->
-            <!--              </el-tab-pane>-->
-            <!--              <el-tab-pane label="线性代数" name="second">配置管理</el-tab-pane>-->
-            <!--              <el-tab-pane label="常用函数" name="third">角色管理</el-tab-pane>-->
-            <!--              <el-tab-pane label="字母符号" name="fourth">定时任务补偿</el-tab-pane>-->
-            <!--            </el-tabs>-->
           </el-col>
         </el-row>
       </el-main>
