@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <colorization-page></colorization-page>
+    <easy-latex-page></easy-latex-page>
   </div>
 </template>
 
 <script>
-import ColorizationPage from './components/MainPage'
-// import MainPage from './components/MainPage'
+import EasyLatexPage from './components/EasyLatex_Page'
 
 export default {
   name: 'App',
   components: {
-    ColorizationPage
+    EasyLatexPage
   }
 }
 </script>

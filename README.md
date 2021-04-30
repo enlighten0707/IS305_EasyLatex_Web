@@ -1,37 +1,18 @@
 <div align=center><img src="frontend/src/assets/logo.png" alt="logo" width="500"/></div>
 
-# Anime-Paintbrush
+# EasyLatex
 
-A web-based animation coloring tool, capable of reconstructing sketches into colored images. The uploaded sketch would be preprocessed and some hints about color are needed to provide color information, two parts combining to be put into input. The rendered colorized anime characters will be the output. 
+This is the project for **IS305: Application Software Course Design** (SJTU，2021 Spring).
 
-This project is developed with `javascript`, `python`, `css`, etc. The front-end development of this project uses `Vue` with `Element-ui` , with the back-end development using `Django`.
+EasyLatex is an easy-to-use tool to **get Latex from OCR and edit the mathematical formulas**. The project is based on *Django+Vue+Element-UI*. 
 
+Below is a demo.
 
-## Table of Contents
-
-- [Background](#background)
-- [Install](#install)
-- [Usage](#usage)
-- [Demonstration](#demonstration)
-- [Related Efforts](#related-efforts)
-- [Contributor and Maintainer](#contributor-and-maintainer)
-- [License](#license)
-
-## Background
-
-As a painting enthusiast, I have tried different ways of painting, such as pen sketching, oil painting, watercolor, etc. The most convenient one is pen sketching, where the basic concern is to outline the object. However, for human perception and the situation where the most applications are currently put, color is essential for drawing.
-
-Thus it is meaningful to design a tool that would **automatically assist in generating high quality images by simply inputing a sketch with a little color cue**. By learning through generative adversarial networks (GAN), neural networks can learn pretty good drawing skills. This project deploys the trained neural network on the back-end, while the front-end is deployed on a web application, and a user-friendly interface is designed so that users can complete the color rendering of sketches and download them through simple operations on the web page.
-
-The goals for this repository are:
-
-1. Provide efficient coloring tools for drawing practitioners to improve drawing efficiency.
-2. Provide non-professionals with the opportunity to draw high-quality manga characters at a low learning cost.
-3. Provide a reference for programmers since all the code has  been open sourced.
+<img src="界面.png" alt="界面" style="zoom:75%;" />
 
 ## Install
 
-The back-end is developed with `python3.7`. Make sure you have an available environment. In your environment, install the required packages.
+The back-end is developed with `python3.6`. Make sure you have an available environment. In your environment, install the required packages.
 
 ```sh
 $ pip install -r requirements.txt
@@ -52,44 +33,17 @@ $ npm run build
 Enter the home directory and execute the following commands.
 
 ```sh
-$ cd Colorization_Tool_on_Web
+$ cd IS305_EasyLatex_Web
 $ python manage.py runserver
 ```
 
 At this point, you can already access the page at http://127.0.0.1:8000.
 
-## Demonstration
+## Code
 
-Demo 1:
+The main code for frontend is [EasyLatex_Page.vue](frontend/src/components/EasyLatex_Page.vue) and [App.vue](frontend/src/App.vue). The main code for backend is [backend/views.py](backend/views.py).
 
-<div><img src="Examples/1sketch.png" width=250>&nbsp;<img src="Examples/1hint.png" width=250>&nbsp;<img src="Examples/1result.png" width=250></div>
-<p>
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sketch &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Hint &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Result
-</p>
+## Related Work
 
-Interface:
-<div><img src="Examples/1screen.png" width=800></div>
+ [XunFei API for FormulaRecognition](https://www.xfyun.cn/service/formula-discern)（科大讯飞公式识别API）
 
-Demo 2:
-<div><img src="Examples/2sketch.png" width=250>&nbsp;<img src="Examples/2hint.png" width=250>&nbsp;<img src="Examples/2result.png" width=250></div>
-<p>
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sketch &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Hint &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Result
-</p>
-
-Interface:
-<div><img src="Examples/2screen.png" width=800></div>
-
-
-
-## Related Efforts
-
-- [Anime-Colorization-Machine](https://github.com/delta6189/Anime-Colorization-Machine) - The checkpoints of the model come from this repo.
-
-## Contributor and Maintainer
-
-[@yangco-le](https://github.com/yangco-le)
-
-
-## License
-
-[MIT](LICENSE) © Richard Littauer
