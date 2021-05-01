@@ -2,55 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a6fc68-5b18-4397-a339-38010b53b01e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/IS305_OverThere_Web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IS305_EasyLatex_Web.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ColorizationPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Colorization_Tool/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/EasyLatex_Tool/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Colorization_Tool/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/EasyLatex_Tool/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Colorization_Tool/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EasyLatex_Tool/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Colorization_Tool/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EasyLatex_Tool/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Colorization_Tool/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/EasyLatex_Tool/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/1hint.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/1origin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/1result.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/1screen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/1sketch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/2hint.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/2origin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/2result.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/2screen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/2sketch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/cropped/crop_0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/origin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/origin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/checkpoint/color2sketch.pth" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/checkpoint/sketch2color.pth" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/imgDir/hint.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/imgDir/origin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/imgDir/result.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/imgDir/sketch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/imgDir/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/utils/process.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/crop_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/panda.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/MainPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/try.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/words_cropimg.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,52 +63,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Django Server.IS205_OverThere_Web">
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -246,99 +153,6 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docs" factoryName="Docutils task">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="docutils_input_file" value="" />
-      <option name="docutils_output_file" value="" />
-      <option name="docutils_params" value="" />
-      <option name="docutils_task" value="" />
-      <option name="docutils_open_in_browser" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docs" factoryName="Sphinx task">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="docutils_input_file" value="" />
-      <option name="docutils_output_file" value="" />
-      <option name="docutils_params" value="" />
-      <option name="docutils_task" value="" />
-      <option name="docutils_open_in_browser" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <module name="IS305_EasyLatex_Web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Django Server.IS205_OverThere_Web" />
       <item itemvalue="Python.try" />
@@ -384,6 +198,9 @@
       <workItem from="1619136388790" duration="5669000" />
       <workItem from="1619142533903" duration="662000" />
       <workItem from="1619791889353" duration="4163000" />
+      <workItem from="1619796109712" duration="106000" />
+      <workItem from="1619836867077" duration="3063000" />
+      <workItem from="1619844309862" duration="342000" />
     </task>
     <servers />
   </component>
@@ -420,30 +237,30 @@
     </state>
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1618408286336" />
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1619143202276" />
-    <state width="1237" height="128" key="GridCell.Tab.0.bottom" timestamp="1619796087433">
+    <state width="1237" height="32" key="GridCell.Tab.0.bottom" timestamp="1619844130863">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="125" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1616249755938" />
     <state width="1877" height="195" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616860331008" />
-    <state width="1237" height="128" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1619796087433" />
-    <state width="1237" height="128" key="GridCell.Tab.0.center" timestamp="1619796087433">
+    <state width="1237" height="32" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1619844130863" />
+    <state width="1237" height="32" key="GridCell.Tab.0.center" timestamp="1619844130863">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="125" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1616249755938" />
     <state width="1877" height="195" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616860331007" />
-    <state width="1237" height="128" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1619796087433" />
-    <state width="1237" height="128" key="GridCell.Tab.0.left" timestamp="1619796087433">
+    <state width="1237" height="32" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1619844130863" />
+    <state width="1237" height="32" key="GridCell.Tab.0.left" timestamp="1619844130863">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="125" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1616249755938" />
     <state width="1877" height="195" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616860331007" />
-    <state width="1237" height="128" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1619796087433" />
-    <state width="1237" height="128" key="GridCell.Tab.0.right" timestamp="1619796087433">
+    <state width="1237" height="32" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1619844130863" />
+    <state width="1237" height="32" key="GridCell.Tab.0.right" timestamp="1619844130863">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="125" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1616249755938" />
     <state width="1877" height="195" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1616860331007" />
-    <state width="1237" height="128" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1619796087433" />
+    <state width="1237" height="32" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1619844130863" />
     <state x="391" y="42" key="RollbackChangesDialog" timestamp="1616302262866">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

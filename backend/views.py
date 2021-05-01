@@ -52,19 +52,19 @@ def cropAndStore(img_dir):
 
     h_h = hProject(th)  # 获取图片水平投影
 
-    start = 0
-    h_start, h_end = [], []
+    start = 0  # 当前区域开始标志
+    h_start, h_end = [], []  # 记录遍历结果，每个区域起始点记录在h_start中，结束点记录在h_end中
 
-    # 根据水平投影获取垂直分割
-    zero_cnt = 0
-    for i in range(len(h_h)):
-        if h_h[i] > 0 and start == 0:
-            h_start.append(max(0, i - 5))
+    # 根据水平投影获取分割
+    zero_cnt = 0  # 记录像素点为0的连续行数
+    for i in range(len(h_h)):  # 遍历各行像素值
+        if h_h[i] > 0 and start == 0:  # 如果当前行投影不为0，并且没有开始一个新的区域
+            h_start.append(max(0, i - 5))  # 进入有效区域，开始行留有余量，此处设置为5行
             start = 1
             zero_cnt = 0
-        if h_h[i] == 0:
+        if h_h[i] == 0:  # 当前行投影为0，zero_cnt计数
             zero_cnt += 1
-        if zero_cnt > 10 and start == 1:
+        if zero_cnt > 10 and start == 1:  # 如果在有效区域中，像素点为0的连续行数达到一定阈值（此处设置为10），结束当前区域，保存结束点
             h_end.append(i)
             start = 0
 
